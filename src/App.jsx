@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import "./app.css";
 import { data } from "./data";
@@ -30,6 +30,11 @@ const App = () => {
       ].reverse(),
     []
   );
+
+  useEffect(() => {
+    questionNumber > 1 &&
+      setEarned(moneyPyramid.find((m) => m.id === questionNumber - 1).amount);
+  }, [moneyPyramid, questionNumber]);
 
   return (
     <div className="app">
